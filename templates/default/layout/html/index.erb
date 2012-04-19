@@ -5,15 +5,17 @@
     <%= yieldall :object => obj %>
   <% end %>
 
-  <% if @files && @files.size > 0 %>
-    <h2>Files A-Z</h2>
-    <ul id="files">
-      <% n = 1 %>
-      <% @files.each_with_index do |file, i| %>
-        <li class="r<%= n %>"><%= link_file(file, File.basename(file.filename).gsub(/\.[^.]+$/, '')) %></li>
-        <% n = n == 2 ? 1 : 2 %>
-      <% end %>
-    </ul>
+  <% if false #commented out %> 
+    <% if @files && @files.size > 0 %>
+      <h2>Files A-Z</h2>
+      <ul id="files">
+        <% n = 1 %>
+        <% @files.each_with_index do |file, i| %>
+          <li class="r<%= n %>"><%= link_file(file, File.basename(file.filename).gsub(/\.[^.]+$/, '')) %></li>
+          <% n = n == 2 ? 1 : 2 %>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
   <div class="clear"></div>
 
@@ -31,7 +33,7 @@
           <ul id="alpha_<%= topic %>" class="alpha">
             <li class="letter"><%= topic %></li>
             <ul>
-              <% objects.each do |obj| %>
+              <% objects.sort_by { |obj| obj.tags("url").first.text }.each do |obj| %>
                 <% obj.tags("url").each do |url_tag| %>
                   <li><%= linkify(obj, url_tag.text) %></li>
                 <% end %>
@@ -43,7 +45,6 @@
         </tr>
   </table>
 
-
   <h2>Resources A-Z</h2>
   <ul>
     <% urls = [] %>
@@ -52,9 +53,8 @@
         <% urls << [url_tag.text, object] %>
       <% end %>
     <% end %>
-    <% urls.sort_by(& :first).each do |elem| %>
-      <li><%= linkify(elem.last, elem.first) %></li>
+    <% urls.sort_by(&:first).each do |elem| %>
+      <li><%= linkify(elem.last, elem.last.to_s.gsub(/Api::V2::|Controller/, '').gsub('::','/')) %></li>
     <% end %>
   </ul>
-
 </div>
