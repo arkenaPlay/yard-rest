@@ -26,6 +26,3 @@ module RestFilters
   end
 
 end
-
-
-

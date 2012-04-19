@@ -1,4 +1,4 @@
-# Define custom tags
+# REST tags
 YARD::Tags::Library.define_tag("URL for Service", :url)
 YARD::Tags::Library.define_tag("Topic for Service", :topic)
 YARD::Tags::Library.define_tag("Required Arguments", :argument, :with_types_and_name)
@@ -11,3 +11,6 @@ YARD::Tags::Library.define_tag("Headers", :header, :with_name)
 YARD::Tags::Library.define_tag("Response codes", :response_code, :with_name)
 YARD::Tags::Library.define_tag("Image", :image)
 YARD::Tags::Library.define_tag("Overall", :overall)
+
+# Internal tags
+YARD::Tags::Library.define_tag("Internal", :internal) # Currently this does nothing except omit it from public API REST doc
