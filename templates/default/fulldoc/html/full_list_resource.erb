@@ -1,4 +1,8 @@
-<li><a href="<%= url_for('_index.html') %>">Home</a></li>
+<li>
+  <span class="object_link">
+    <a href="<%= url_for('_index.html') %>" title="Home">Home</a>
+  </span>
+</li>
 <% n = 1 %>
 <% @items.sort_by { |s| s.name.to_s }.each do |resource| %>
   <% resource.tags("url").each do |url_tag| %>
