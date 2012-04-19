@@ -2,5 +2,6 @@ YARD::Templates::Engine.register_template_path File.dirname(__FILE__) + '/../tem
 
 require File.join(File.dirname(__FILE__), 'yard-rest', 'tags')
 require File.join(File.dirname(__FILE__), 'yard-rest', 'rest_filters')
+require File.join(File.dirname(__FILE__), 'yard', 'tags', 'default_factory')
 
 YARD::Templates::Template.extra_includes << RestFilters

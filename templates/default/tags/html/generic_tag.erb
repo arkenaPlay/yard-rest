@@ -6,7 +6,7 @@
         <span class='type'><%= format_types(tag.types) %></span>
       <% end %>
       <% unless @no_names %>
-        <span class='name'><%= h tag.name %></span>
+        <span class='name'><%= tag.name %></span>
       <% end %>
       <% if tag.text && !tag.text.empty? %>
         <% unless (@no_types || tag.types.nil? || tag.types.empty?) && @no_names %>&mdash;<% end %>
