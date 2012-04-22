@@ -44,3 +44,6 @@ def generic_tag(name, opts = {})
   out
 end
 
+def api_response
+  @api_response ||= Api::Response.new
+end

@@ -1,9 +1,23 @@
+<% # This code is extremely coupled with SYNCTV's internal logic. Implement a callback or hooks for reusability. %>
+
 <% if object.has_tag?(:example_response) %>
   <div class="examples">
     <h3>Example Response:</h3>
     <% object.tags(:example_response).each do |tag| %>
       <h4><%= htmlify_line(tag.name) %></h4>
-      <pre class="example code"><%= html_syntax_highlight(tag.text, :plain) %></pre>
+      <%
+        response = case tag.text
+        when /FactoryGirl.create/ # Response won't show ids if we use FactoryGirl#build
+          text = tag.text[/\A.+\=\>.+\Z/] ? "{#{tag.text}}" : tag.text # Checks if text is a hash
+          api_response.add_data(eval(text))
+          api_response.to_xml(:indent => 2, :skip_instruct => true)
+        when /Factory\.|Factory\(|FactoryGirl\(/
+          abort "Please use FactoryGirl#create instead; yard doc aborted!"
+        else
+          tag.text
+        end 
+      %>
+      <pre class="example code"><%= html_syntax_highlight(response, :plain) %></pre>
     <% end %>
   </div>
 <% end %>
