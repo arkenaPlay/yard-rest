@@ -53,7 +53,7 @@
         <% urls << [url_tag.text, object] %>
       <% end %>
     <% end %>
-    <% urls.sort_by(&:first).each do |elem| %>
+    <% urls.sort_by { |elem| elem.last.to_s }.each do |elem| %>
       <li><%= linkify(elem.last, elem.last.to_s.gsub(/Api::V2::|Controller/, '').gsub('::','/')) %></li>
     <% end %>
   </ul>

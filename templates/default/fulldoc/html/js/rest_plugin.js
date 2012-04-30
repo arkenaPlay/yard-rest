@@ -6,17 +6,24 @@ function resourceSearchFrameLinks() {
 
 $(resourceSearchFrameLinks);
 
-/*
-function resourceKeyboardShortcuts() {
-  if (window.top.frames.main) return;
-  $(document).keypress(function(evt) {
-    if (evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey) return;
-    if (typeof evt.orignalTarget !== "undefined" &&  
-        (evt.originalTarget.nodeName == "INPUT" || 
-        evt.originalTarget.nodeName == "TEXTAREA")) return;
-    switch (evt.charCode) {
-      case 82: case 114: $('#resource_list_link').click(); break; // 'r' or 'R'
+$(document).ready(function() {
+  $(".switchContainer a.XML").click(function() {
+    if(!$(this).hasClass("active")) {
+      $(".switchContainer a.JSON").removeClass("active");
+      $(".switchContainer a.XML").addClass("active");
+      $("pre.example.code.JSON").fadeOut("fast", function() {
+        $("pre.example.code.XML").fadeIn("fast");
+      });
     }
   });
-}
-*/
+
+  $(".switchContainer a.JSON").click(function() {
+    if(!$(this).hasClass("active")) { 
+      $(".switchContainer a.XML").removeClass("active");
+      $(".switchContainer a.JSON").addClass("active");
+      $("pre.example.code.XML").fadeOut("fast", function() {
+        $("pre.example.code.JSON").fadeIn("fast");
+      });
+    }
+  });
+});
