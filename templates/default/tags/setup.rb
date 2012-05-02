@@ -1,14 +1,14 @@
 def init
   super
-  sections :index, [:argument,
+  sections :index, [:note,
+                    :argument,
                     :optional_argument,
                     :example_request,
                     :request_field,
                     :example_response,
                     :response_field,
                     :header,
-                    :response_code,
-                    :note]
+                    :response_code]
 end
 
 def request_field
