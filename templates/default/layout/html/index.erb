@@ -57,4 +57,14 @@
       <li><%= linkify(elem.last, elem.last.to_s.gsub(/Api::V2::|Controller/, '').gsub('::','/')) %></li>
     <% end %>
   </ul>
+
+  <h2>Routes</h2>
+  <table>
+    <% @routes.each do |route| %>
+      <tr>
+        <td><%= "[#{route[:verb]}]" %></td>
+        <td><%= link_object(route[:link_object], "#{route[:path]}") %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

@@ -61,5 +61,6 @@ def index
 
   @resources = legitimate_objects.sort_by {|o| o.tags('url').first.text }
   @overall_objects = @objects.find_all { |o| o.has_tag?('overall') }.sort_by { |o| o.tag('overall').text }
+  @routes = YARD::Rest::Routes.with_resource_links(@resources)
   erb(:index)
 end
