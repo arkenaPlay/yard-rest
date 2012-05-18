@@ -6,7 +6,7 @@ module YARD::Rest
         all_routes.to_a.map do |route|
           {:verb => verb(route), :path => path(route), :link_object => resource(route, resources)}
         end.reject do |route_hash| 
-          route_hash[:link_object].nil?
+          route_hash[:link_object].nil? || route_hash[:verb].blank?
         end
       end
 
