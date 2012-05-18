@@ -5,8 +5,9 @@ module YARD::Rest
         all_routes = Rails.application.routes.routes # Journey::Routes object
         all_routes.to_a.map do |route|
           {:verb => verb(route), :path => path(route), :link_object => resource(route, resources)}
+        end.reject do |route_hash| 
+          route_hash[:link_object].nil?
         end
-        all_routes.reject { |route_hash| route_hash[:link_object].nil? }
       end
 
       def resource(route, resources)
