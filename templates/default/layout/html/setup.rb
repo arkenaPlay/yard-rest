@@ -51,6 +51,13 @@ def menu_lists
     { :type => 'file', :title => "Files", :search_title => "File List" } ]
 end
 
+def resource_methods(resources)
+  resources.each_with_object([]) do |resource, array|
+    meths = resource.meths(:inherited => false, :included => false)
+    array << index_objects(meths).map(&:path)
+  end.flatten
+end
+
 def index
   legitimate_objects = @objects.select { |o| o.has_tag?('url') }
   @topics = {}
@@ -61,6 +68,9 @@ def index
 
   @resources = legitimate_objects.sort_by {|o| o.tags('url').first.text }
   @overall_objects = @objects.find_all { |o| o.has_tag?('overall') }.sort_by { |o| o.tag('overall').text }
-  @routes = YARD::Rest::Routes.with_resource_links(@resources)
+  legitimate_methods = resource_methods(@resources)
+  @routes = YARD::Rest::Routes.with_resource_links(@resources).reject do |route_hash|
+    !legitimate_methods.include?(route_hash[:endpoint])
+  end
   erb(:index)
 end

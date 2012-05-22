@@ -60,7 +60,7 @@
 
   <h2>Routes</h2>
   <table>
-    <% @routes.each do |route| %>
+    <% @routes.sort_by { |elem| elem[:path] }.each do |route| %>
       <tr>
         <td><%= "[#{route[:verb]}]" %></td>
         <td><%= link_object(route[:link_object], route[:path], route[:link_anchor]) %></td>

@@ -9,9 +9,17 @@ module YARD::Rest
         all_routes.to_a.map do |route|
           link_object = resource(route, resources)
 
-          {:verb => verb(route), :path => path(route), :link_object => link_object, :link_anchor => link_anchor(route)}
-        end.reject do |route_hash| 
+          {:verb => verb(route), :path => path(route), :link_object => link_object, :link_anchor => link_anchor(route),
+           :endpoint => resource_endpoint(route)}
+        end.reject do |route_hash|
           route_hash[:link_object].nil? || route_hash[:verb].blank?
+        end
+      end
+
+      def resource_endpoint(route)
+        if route.requirements[:controller]
+          controller_class =  "#{route.requirements[:controller]}_controller".classify
+          "#{controller_class}##{route.requirements[:action]}"
         end
       end
 
