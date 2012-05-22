@@ -63,7 +63,7 @@
     <% @routes.each do |route| %>
       <tr>
         <td><%= "[#{route[:verb]}]" %></td>
-        <td><%= link_object(route[:link_object], "#{route[:path]}") %></td>
+        <td><%= link_object(route[:link_object], "#{route[:path]}", route[:resource_index]) %></td>
       </tr>
     <% end %>
   </table>
