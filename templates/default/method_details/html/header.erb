@@ -1,3 +1,3 @@
-<div id="<%= @index %>" class="method_details <%= @index == 0 ? 'first' : '' %>">
+<div id="<%= object.path.underscore.gsub(/\/|#/, "_") %>" class="method_details <%= @index == 0 ? 'first' : '' %>">
   <%= yieldall %>
 </div>

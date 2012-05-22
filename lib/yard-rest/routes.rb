@@ -8,16 +8,16 @@ module YARD::Rest
         all_routes = Rails.application.routes.routes # Journey::Routes object
         all_routes.to_a.map do |route|
           link_object = resource(route, resources)
-          resource_index = if(!link_object.nil? && link_object.path == resource_path)
-            resource_index + 1
-          elsif !link_object.nil? && !link_object.path.nil?
-            resource_path = link_object.path
-            0
-          end
 
-          {:verb => verb(route), :path => path(route), :link_object => link_object, :resource_index => resource_index}
+          {:verb => verb(route), :path => path(route), :link_object => link_object, :link_anchor => link_anchor(route)}
         end.reject do |route_hash| 
           route_hash[:link_object].nil? || route_hash[:verb].blank?
+        end
+      end
+
+      def link_anchor(route)
+        if route.requirements[:controller]
+          "#{route.requirements[:controller].underscore.gsub(/\//, "_")}_controller_#{route.requirements[:action]}"
         end
       end
 
