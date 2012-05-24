@@ -11,9 +11,9 @@ def init
                     :response_code]
 end
 
-def request_field
-  generic_tag :request_field
-end
+# def request_field
+#   generic_tag :request_field
+# end
 
 def response_field
   generic_tag :response_field
