@@ -1,7 +1,6 @@
 include Helpers::ModuleHelper
 include Helpers::FilterHelper
 
-
 def generate_topic_list
   topic_objects = index_objects(@objects).reject { |o| o.root? }
   @topics = {}
@@ -22,4 +21,3 @@ def generate_resource_list
   @list_type = "resource"
   asset('resource_list.html', erb(:full_list))
 end
-

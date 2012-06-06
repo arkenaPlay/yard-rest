@@ -59,7 +59,7 @@ def resource_methods(resources)
 end
 
 def index
-  legitimate_objects = @objects.select { |o| o.has_tag?('url') }
+  legitimate_objects = index_objects(@objects)
   @topics = {}
 
   legitimate_objects.each do |object|
@@ -68,6 +68,7 @@ def index
 
   @resources = legitimate_objects.sort_by {|o| o.tags('url').first.text }
   @overall_objects = @objects.find_all { |o| o.has_tag?('overall') }.sort_by { |o| o.tag('overall').text }
+  
   legitimate_methods = resource_methods(@resources)
   @routes = YARD::Rest::Routes.with_resource_links(@resources).reject do |route_hash|
     !legitimate_methods.include?(route_hash[:endpoint])
