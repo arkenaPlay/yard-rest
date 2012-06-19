@@ -2,7 +2,10 @@
 <h3>Url:</h3>
 <ul id="<%= anchor_for(object) %>">  
   <% object.tags(:url).each do |url| %>
-  <li><%= url.text %></li>
+  <li> 
+    <span><%= url.text %></span>
+    <span style='float:right'><%= "(INTERNAL)" if @internal %></span>
+  </li>
   <% end %>
 </ul>
 <% end %>

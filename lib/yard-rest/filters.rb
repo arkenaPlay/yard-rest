@@ -1,3 +1,4 @@
+# This should be replace with Verifiers
 module YARD::Rest
   module Filters
     def index_objects(list)
@@ -5,7 +6,6 @@ module YARD::Rest
       res = reject_without_url(res)
       res = reject_without_topic(res)
       res = reject_overall(res)
-      res = reject_internal(res)
 
       res
     end
@@ -24,10 +24,6 @@ module YARD::Rest
 
     def reject_overall(list)
       list.reject { |object| object.has_tag?('overall') }
-    end
-
-    def reject_internal(list)
-      list.reject { |object| [:class, :method].include?(object.type) and object.has_tag?('internal') }
     end
   end
 end
