@@ -5,7 +5,7 @@
 </li>
 <% n = 1 %>
 <% @topics.sort_by {|s,o| s }.each do |topic,objects| %>
-  <li class="r<%= n %>"><%= topic%></li>
+  <li class="r<%= n %>"><%= topic %></li>
   <% unless objects.empty? %>
     <% objects.each do |object| %>
       <% object.tags("url").each do |url_tag| %>

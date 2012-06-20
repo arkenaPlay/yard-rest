@@ -1,14 +1,12 @@
 <% if object.has_tag?(:request_field) %>
-  <h3><%= YARD::Tags::Library.labels["request_field"] %>:</h3>
+  <h3>Request Field:</h3>
   <ul class="request_field">
-    <% tags = object.tags.reject { |tag| tag.tag_name !~ /request_field|request_field_argument/ } %>
-    <% tags.each do |tag| %>
+    <% @tags.each do |tag| %>
       <li class="<%= tag.tag_name %>">
-        <span class='type'><%= format_types(tag.types) %></span>
-        <span class='name'><%= tag.name %></span>
+        <span class="type"><%= format_types(tag.types) %></span>
+        <span class="name"><%= tag.name %></span>
         <% if tag.text && !tag.text.empty? %>
-          <% unless (tag.types.nil? || tag.types.empty?) %>&mdash;<% end %>
-          <%= htmlify_line(tag.text, :plain) %>
+          &mdash; <%= tag.text %>
         <% end %>
       </li>
     <% end %>

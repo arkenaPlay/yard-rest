@@ -1,12 +1,12 @@
 <% # This code is extremely coupled with SYNCTV's internal logic. Maybe implement a callback or hooks for reusability? %>
 
 <% if object.has_tag?(:example_response) %>
-  <div class="examples">
+  <div class="response">
     <h3>
       Example Response:
       <span class="switchContainer">
         <a class="XML toggleSwitch right active" href="javascript:void(0)">XML</a>
-        <a class="JSON toggleSwitch left " href="javascript:void(0)">JSON</a>
+        <a class="JSON toggleSwitch left" href="javascript:void(0)">JSON</a>
       </span>
     </h3>
     <% object.tags(:example_response).each do |tag| %>
@@ -18,7 +18,7 @@
       <% else %>
         <% plain_text, xml_text = parse_out_xml_response(tag.text) %>
         <% unless plain_text.empty? %>
-          <pre class="example code"><%= html_syntax_highlight(plain_text, :plain)%></pre>
+          <pre class="example code"><%= html_syntax_highlight(plain_text, :plain) %></pre>
         <% end %>
         <% unless xml_text.empty? %>
           <pre class="example code XML"><%= html_syntax_highlight(xml_text, :plain) %></pre>

@@ -14,7 +14,4 @@ module YARD::Rest
   YARD::Tags::Library.define_tag("Image", :image)
   YARD::Tags::Library.define_tag("Overall", :overall)
   YARD::Tags::Library.define_tag("Note", :note)
-
-  # Internal tags
-  YARD::Tags::Library.define_tag("Internal", :internal) # Currently this does nothing except omit it from public API REST doc
 end

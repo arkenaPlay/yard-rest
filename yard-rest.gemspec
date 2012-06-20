@@ -22,7 +22,10 @@ Gem::Specification.new do |s|
     "example/SampleController.rb",
     "lib/yard-rest.rb",
     "lib/yard-rest/filters.rb",
-    "lib/yard-rest/tags.rb"
+    "lib/yard-rest/tags.rb",
+    "lib/yard/cli/yardoc.rb",
+    "lib/yard/tags/default_factory.rb",
+    "lib/yard/handlers/ruby/comment_handler.rb",
   ]
   s.homepage = "http://github.com/chtrinh/yard-rest"
   s.require_paths = ["lib"]

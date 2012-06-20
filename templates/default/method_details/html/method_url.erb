@@ -4,7 +4,7 @@
   <% object.tags(:url).each do |url| %>
   <li> 
     <span><%= url.text %></span>
-    <span style='float:right'><%= "(INTERNAL)" if @internal %></span>
+    <span style="float:right;"><%= "(INTERNAL)" if @internal %></span>
   </li>
   <% end %>
 </ul>

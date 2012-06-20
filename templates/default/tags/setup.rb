@@ -2,18 +2,16 @@ def init
   super
   sections :index, [:note,
                     :argument,
-                    :optional_argument,
                     :example_request,
                     :request_field,
                     :example_response,
-                    :response_field,
-                    :header,
-                    :response_code]
+                    :response_field]
 end
 
-# def request_field
-#   generic_tag :request_field
-# end
+def request_field
+  @tags = object.tags.find_all { |tag| tag.tag_name =~ /request_field|request_field_argument/ }
+  erb('request_field')
+end
 
 def response_field
   generic_tag :response_field
@@ -23,17 +21,6 @@ def argument
   generic_tag :argument, :no_types => false
 end
 
-def optional_argument
-  generic_tag :optional_argument, :no_types => false
-end
-
-def header
-  generic_tag :header
-end
-
-def response_code
-  generic_tag :response_code
-end
 
 def generic_tag(name, opts = {})
   return unless object.has_tag?(name)
