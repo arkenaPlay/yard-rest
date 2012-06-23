@@ -6,7 +6,6 @@ module YARD::Rest
       res = reject_without_url(res)
       res = reject_without_topic(res)
       res = reject_overall(res)
-
       res
     end
 
