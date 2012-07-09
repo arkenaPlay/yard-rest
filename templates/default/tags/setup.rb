@@ -53,7 +53,8 @@ def parse_response(response_text)
 end
 
 def parse_out_xml_response(response_text)
-  xml_text      = response_text.match(/(<response>[\s\S]+<\/response>)/).try("[]", 1) || "" 
+  xml_text      = response_text.match(/(<response>[\s\S]+<\/response>)/).try("[]", 1) || ""
+  xml_text      = xml_text.gsub(/\<\!\[CDATA\[\n|\<\!\[CDATA\[/, "").gsub(/\]\]\>\n|\]\]\>/, "")
   plain_text    = response_text.gsub(/<response>[\s\S]+<\/response>/, "")
   [plain_text, xml_text]
 end
