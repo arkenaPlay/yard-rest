@@ -9,6 +9,7 @@ require "yard-rest/routes"
 require "yard/handlers/ruby/comment_handler"
 require "yard/tags/default_factory"
 require "cancan/yard_additions"
+require "database_cleaner"
 
 YARD::Templates::Template.extra_includes << YARD::Rest::Filters
 YARD::Templates::Template.extra_includes << CanCan::YardAdditions

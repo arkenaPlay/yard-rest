@@ -1,5 +1,9 @@
 def init
+  DatabaseCleaner.clean_with :truncation
+  DatabaseCleaner.strategy = :transaction
+
   super
+
   sections :index, [:note,
                     :argument,
                     :example_request,
@@ -44,7 +48,9 @@ end
 def parse_response(response_text)
   response_text.gsub!(/\n|\t/, "")
   text = response_text[/\A{.+\=\>.+}\Z/] ? response_text : "{#{response_text}}"
+  DatabaseCleaner.start
   api_response.add_data(eval(text))
+  DatabaseCleaner.clean
 
   # XML is set to ignore caching to return the correctly formatted XML.
   # JSON is formatted in a "pretty" manner. 

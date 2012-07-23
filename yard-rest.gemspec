@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
   s.summary = "A plugin for Yardoc that produces API documentation for Restful web services"
-  s.add_runtime_dependency("yard", ["~> 0.8.0"])
+  s.add_runtime_dependency("yard", ["~> 0.8.2"])
+  s.add_runtime_dependency("database_cleaner")
 end
 
