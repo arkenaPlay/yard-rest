@@ -5,12 +5,20 @@ module YARD
   end
 end
 
-require "cancan/yard_additions"
+require "yard-rest/load_rails"
+require "cancan/additions"
 
 module YARD
   module CLI
     class Yardoc
-      include CanCan::YardAdditions
+      alias_method :old_initialize, :initialize
+
+      def initialize
+        YARD::CLI::Yardoc.send :include, YARD::Rest::LoadRails
+        YARD::CLI::Yardoc.send :include, CanCan::Additions
+
+        old_initialize
+      end
 
       # By default all no @api tags are considered.
       # In addition, roles are parsed out of the api options since they will be handle differently,
@@ -38,7 +46,7 @@ module YARD
         else
           list
         end
-      end # run_verifier
+      end
     end # Yardoc
   end # CLI
 end # YARD

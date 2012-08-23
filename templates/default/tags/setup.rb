@@ -1,3 +1,5 @@
+require "database_cleaner"
+
 def init
   DatabaseCleaner.clean_with :truncation
   DatabaseCleaner.strategy = :transaction
@@ -37,10 +39,6 @@ def generic_tag(name, opts = {})
 end
 
 private
-def api_response
-  @api_response ||= Api::Response.new
-end
-
 def factory_response?(response_text)
   response_text[/FactoryGirl.create/] # Response won't show ids if we use FactoryGirl#build
 end
@@ -49,13 +47,13 @@ def parse_response(response_text)
   response_text.gsub!(/\n|\t/, "")
   text = response_text[/\A{.+\=\>.+}\Z/] ? response_text : "{#{response_text}}"
   DatabaseCleaner.start
-  api_response.add_data(eval(text))
+  data = eval(text)
   DatabaseCleaner.clean
 
-  # XML is set to ignore caching to return the correctly formatted XML.
-  # JSON is formatted in a "pretty" manner. 
-  { :xml  => api_response.to_xml(:indent => 2, :skip_instruct => true, :without_cache => true), 
-    :json => JSON.pretty_generate({response: api_response.data}.as_json, :max_nesting => false) }
+  # Convert to JSON first for identation issues. 
+  { :xml  => data.as_json.to_xml(:root => 'response', :skip_types => true, :indent => 2, :dasherize => false, 
+                                 :skip_instruct => true),
+    :json => JSON.pretty_generate({response: data}.as_json, :max_nesting => false) }
 end
 
 def parse_out_xml_response(response_text)
