@@ -66,7 +66,7 @@ def index
     object.tags('topic').each { |topic| (@topics[topic.text] ||= []) << object }
   end
 
-  @resources = legitimate_objects.sort_by {|o| o.tags('url').first.text }
+  @resources = legitimate_objects.sort_by { |o| o.tags('url').first.text }
   @overall_objects = @objects.find_all { |o| o.has_tag?('overall') }.sort_by { |o| o.tag('overall').text }
   
   legitimate_methods = resource_methods(@resources)

@@ -1,39 +1,46 @@
-<div class="service">
-  <h1>
-    <% if object.tags("url").size == 1 %>
-      <span class="minor_heading">Resource: </span>
-      <%= object.tag("url").text %>
-    <% elsif object.tags("url").size > 1 %>
-      <span class="minor_heading">Resource: </span>
-      <ul>
-        <% object.tags("url").each do |url_tag| %>
-          <li><%= url_tag.text %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </h1>
-  <% unless object.tags("topic").empty? %>
+<div id="page">
+	<div class="api_name">
+		Developer APIs
+  </div>
+	<div class="api_description"> 
+		At its core, SyncTV is an API driven service. The APIs themselves are easy enough for developers to understand, but understanding the ecosystem is a little trickier. We've created the following tutorials to help you get your head around it. 
+	</div>
+	<% unless object.tags("topic").empty? %>
     <h3 class="topic">Topics:</h3>
-    <ul class="box">
-      <% object.tags("topic").each do |topic| %>
-        <li><%= topic.text %></li>
+
+		<div class="apis_list_container">
+      <% @topics.sort_by { |t, o| t.to_s }.each do |topic, objects| %>
+  			<div class="apis_list_header"><%= topic %></div>
+  			<div class="apis_list_list">
+  				<ul>
+            <% objects.sort_by { |obj| obj.tags("url").first.text }.each do |obj| %>
+              <% obj.tags("url").each do |url_tag| %>
+                <li <%= "class='selected'" if object.name == obj.name  %>>
+                  <%= linkify(obj, url_tag.text) %>
+                </li>
+              <% end %>
+            <% end %>
+  				</ul>
+  			</div>
       <% end %>
-    </ul>
+		</div>
+		
+		<div class="api_container">
+    	<div class="api_title">
+				<ul>
+      		<% object.tags("url").each do |topic| %>
+        		<li><%= topic.text.capitalize %></li>
+      		<% end %>
+				</ul>
+    	</div>
+
+  		<% object.tags("image").each do |image| %>
+    		<img src="<%= image.text %>">
+  		<% end %>
+  		<%= yieldall %>
+		</div>
   <% end %>
-  <% object.tags("image").each do |image| %>
-    <img src="<%= image.text %>">
-  <% end %>
-  <%= yieldall %>
+
+  <div class="clearer">
+	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-

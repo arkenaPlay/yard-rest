@@ -1,17 +1,24 @@
-<h3><%= @label ? @label : YARD::Tags::Library.labels[@name] %>:</h3>
-<ul class="<%= @name %>">
-  <% object.tags(@name).each do |tag| %>
-    <li>
-      <% unless @no_types %>
-        <span class='type'><%= format_types(tag.types) %></span>
-      <% end %>
-      <% unless @no_names %>
-        <span class='name'><%= tag.name %></span>
-      <% end %>
-      <% if tag.text && !tag.text.empty? %>
-        <% unless (@no_types || tag.types.nil? || tag.types.empty?) && @no_names %>&mdash;<% end %>
-        <%= htmlify_line(tag.text, :plain) %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="api_action_header">
+	<%= @label ? @label : YARD::Tags::Library.labels[@name] %>:
+</div>
+
+<div class="api_points_container">
+	<ul class="<%= @name %>">
+  	<% object.tags(@name).each do |tag| %>
+    	<li>
+      	<% unless @no_types %>
+        	<span class='api_points_text'><%= format_types(tag.types) %></span>
+      	<% end %>
+      	<% unless @no_names %>
+        	<span><%= tag.name %></span>
+      	<% end %>
+				<span class='api_points_text'>
+      		<% if tag.text && !tag.text.empty? %>
+        		<% unless (@no_types || tag.types.nil? || tag.types.empty?) && @no_names %>&mdash;<% end %>
+        		<%= htmlify_line(tag.text, :plain) %>
+      		<% end %>
+				</span>
+    	</li>
+  	<% end %>
+	</ul>
+</div>

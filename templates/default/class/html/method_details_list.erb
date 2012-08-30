@@ -1,6 +1,6 @@
 <% unless @meths.empty? %>
-  <div id="Services" class="method_details_list">
-    <h2>Actions</h2>
+  <div id="Services">
+    <div class="api_actions_header">Actions</div>
     <% @meths.each_with_index do |meth, i| %>
       <%= yieldall :object => meth, :index => i %>
     <% end %>

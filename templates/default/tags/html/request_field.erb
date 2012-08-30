@@ -1,14 +1,21 @@
 <% if object.has_tag?(:request_field) %>
-  <h3>Request Field:</h3>
-  <ul class="request_field">
-    <% @tags.each do |tag| %>
-      <li class="<%= tag.tag_name %>">
-        <span class="type"><%= format_types(tag.types) %></span>
-        <span class="name"><%= tag.name %></span>
-        <% if tag.text && !tag.text.empty? %>
-          &mdash; <%= tag.text %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+	<div class="api_action_header">
+  	Request Field:
+	</div>
+
+	<div class="api_points_container">	
+  	<ul class="request_field">
+    	<% @tags.each do |tag| %>
+      	<li class="<%= tag.tag_name %>">
+        	<span class="api_points_text"><%= format_types(tag.types) %></span>
+        	<span><%= tag.name %></span>
+					<span class="api_points_text">
+        		<% if tag.text && !tag.text.empty? %>
+          		&mdash; <%= tag.text %>
+        		<% end %>
+					</span>
+      	</li>
+    	<% end %>
+  	</ul>
+	</div>
 <% end %>
