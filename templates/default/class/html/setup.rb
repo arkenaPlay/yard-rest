@@ -39,5 +39,7 @@ def header
     end
   end
 
+  @role = options.verifier.roles.first =~ /user/ ? "client" : options.verifier.roles.first
+
   erb(:header)
 end
