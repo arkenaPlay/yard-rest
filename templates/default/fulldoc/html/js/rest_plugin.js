@@ -11,8 +11,8 @@ $(document).ready(function() {
     if(!$(this).hasClass("active")) {
       $(".switchContainer a.JSON").removeClass("active");
       $(".switchContainer a.XML").addClass("active");
-      $("pre.example.code.JSON").fadeOut("fast", function() {
-        $("pre.example.code.XML").fadeIn("fast");
+      $("pre.api_codeblock.JSON").fadeOut("fast", function() {
+        $("pre.api_codeblock.XML").fadeIn("fast");
       });
     }
   });
@@ -21,8 +21,8 @@ $(document).ready(function() {
     if(!$(this).hasClass("active")) { 
       $(".switchContainer a.XML").removeClass("active");
       $(".switchContainer a.JSON").addClass("active");
-      $("pre.example.code.XML").fadeOut("fast", function() {
-        $("pre.example.code.JSON").fadeIn("fast");
+      $("pre.api_codeblock.XML").fadeOut("fast", function() {
+        $("pre.api_codeblock.JSON").fadeIn("fast");
       });
     }
   });
