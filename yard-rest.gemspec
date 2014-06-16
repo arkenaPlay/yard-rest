@@ -4,37 +4,43 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "yard-rest"
-  s.version = "0.4.0"
+  s.name                = 'yard-rest'
+  s.version             = '0.4.1'
 
+  s.add_runtime_dependency 'cancan',          '~> 1.6',   '>= 1.6.7'
+  s.add_runtime_dependency 'database_cleaner','~> 1.2',   '>= 1.2.0'
+  s.add_runtime_dependency 'factory_girl',    '~> 4.4',   '>= 4.4.0'
+  s.add_runtime_dependency 'rails',           '~> 3.2',   '>= 3.2.17'
+  s.add_runtime_dependency 'yard',            '~> 0.8',   '>= 0.8.7'
+  
+  s.authors             = [
+    'R. Kevin Nelson',
+    'Aisha Fenton',
+    'Chris Trinh',
+    'Philippe Nenert',
+  ]
+  s.date                = '2014-06-16'
+  s.description         = 'A plugin for Yardoc that produces API documentation for Restful web services. See README.markdown for more details'
+  s.email               = 'philippe.nenert@arkena.com'
+  s.extra_rdoc_files    = [
+    'README.markdown',
+    'VERSION',
+  ]
+  s.files               = [
+    'example/README.markdown',
+    'example/SampleController.rb',
+    'lib/yard-rest.rb',
+    'lib/yard-rest/filters.rb',
+    'lib/yard-rest/tags.rb',
+    'lib/yard/cli/yardoc.rb',
+    'lib/yard/handlers/ruby/comment_handler.rb',
+    'lib/yard/tags/default_factory.rb',
+    'Rakefile',
+  ]
+  s.homepage            = 'https://github.com/arkenaPlay/yard-rest'
+  s.license             = 'GPL'
+  s.require_paths       = ['lib']
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["R. Kevin Nelson", "Aisha Fenton", "Chris Trinh"]
-  s.date = "2012-09-23"
-  s.description = "A plugin for Yardoc that produces API documentation for Restful web services. See README.markdown for more details"
-  s.email = "chris@synctv.com"
-  s.extra_rdoc_files = [
-    "README.markdown",
-    "VERSION"
-  ]
-  s.files = [
-    "Rakefile",
-    "example/README.markdown",
-    "example/SampleController.rb",
-    "lib/yard-rest.rb",
-    "lib/yard-rest/filters.rb",
-    "lib/yard-rest/tags.rb",
-    "lib/yard/cli/yardoc.rb",
-    "lib/yard/tags/default_factory.rb",
-    "lib/yard/handlers/ruby/comment_handler.rb",
-  ]
-  s.homepage = "http://github.com/chtrinh/yard-rest"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
-  s.summary = "A plugin for Yardoc that produces API documentation for Restful web services"
-  s.add_runtime_dependency("yard", ["~> 0.8.2"])
-  s.add_runtime_dependency("database_cleaner")
-  s.add_runtime_dependency("rails")
-  s.add_runtime_dependency("cancan")
-  s.add_runtime_dependency("factory_girl")
+  s.rubygems_version    = '2.2.2'
+  s.summary             = 'A plugin for Yardoc that produces API documentation for Restful web services'
 end
-
