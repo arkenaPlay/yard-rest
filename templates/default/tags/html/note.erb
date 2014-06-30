@@ -1,6 +1,6 @@
 <% object.tags(:note).each do |tag| %>
   <div class="api_note">
-    <span style="font-weight: bold;">Note:</span> 
+    <span style="font-weight: bold;">Note:</span>
     <%= htmlify_line tag.text, :text %>
   </div>
 <% end %>

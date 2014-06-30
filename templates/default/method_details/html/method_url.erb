@@ -1,9 +1,9 @@
 <% if object.tags(:url).size > 0 %>
 <h3>Url:</h3>
 <div class="api_action">
-	<ul id="<%= anchor_for(object) %>">  
+	<ul id="<%= anchor_for(object) %>">
   	<% object.tags(:url).each do |url| %>
-  	<li> 
+  	<li>
     	<span><%= url.text %></span>
     	<span style="float:right;"><%= "(INTERNAL)" if object.tag(:api).try(:text) == "internal" %></span>
   	</li>
