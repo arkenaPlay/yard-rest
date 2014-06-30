@@ -2,12 +2,12 @@ include Helpers::FilterHelper
 
 # Implementation from yard gem; couldn't use Object#super since we need to concat :diskfile and :index
 def init
-  @breadcrumb = []  
+  @breadcrumb = []
   if @onefile
     sections :layout
   elsif @file
     if @file.attributes[:namespace]
-      @object = options.object = Registry.at(@file.attributes[:namespace]) || Registry.root 
+      @object = options.object = Registry.at(@file.attributes[:namespace]) || Registry.root
     end
     @breadcrumb_title = "File: " + @file.title
     @page_title = options[:title]
@@ -27,7 +27,7 @@ def init
           cur = cur.namespace
         end
       end
-    
+
       @page_title = format_object_title(object)
       type = object.root? ? :module : object.type
       sections :layout, [T(type)]
@@ -68,7 +68,7 @@ def index
 
   @resources = legitimate_objects.sort_by { |o| o.tags('url').first.text }
   @overall_objects = @objects.find_all { |o| o.has_tag?('overall') }.sort_by { |o| o.tag('overall').text }
-  
+
   legitimate_methods = resource_methods(@resources)
   @routes = YARD::Rest::Routes.with_resource_links(@resources).reject do |route_hash|
     !legitimate_methods.include?(route_hash[:endpoint])

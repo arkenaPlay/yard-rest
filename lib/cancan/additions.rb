@@ -11,8 +11,8 @@ module CanCan::Additions
     end
   end
 
-  # This checks to see if the controller's action is available to the role and 
-  # filters out the ones it can not access. 
+  # This checks to see if the controller's action is available to the role and
+  # filters out the ones it can not access.
   def cancan_ability_filter(method_object, ability)
     if method_object.path =~ /(.+)#(.+)/
       if cancan_resource_hash = $1.constantize.cancan_resource

@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'factory_girl',    '~> 4.4',   '>= 4.4.0'
   s.add_runtime_dependency 'rails',           '~> 3.2',   '>= 3.2.17'
   s.add_runtime_dependency 'yard',            '~> 0.8',   '>= 0.8.7'
-  
+
   s.authors             = [
     'R. Kevin Nelson',
     'Aisha Fenton',

@@ -50,8 +50,8 @@ def parse_response(response_text)
   data = eval(text)
   DatabaseCleaner.clean
 
-  # Convert to JSON first for identation issues. 
-  { :xml  => data.as_json.to_xml(:root => 'response', :skip_types => true, :indent => 2, :dasherize => false, 
+  # Convert to JSON first for identation issues.
+  { :xml  => data.as_json.to_xml(:root => 'response', :skip_types => true, :indent => 2, :dasherize => false,
                                  :skip_instruct => true),
     :json => JSON.pretty_generate({response: data}.as_json, :max_nesting => false) }
 end

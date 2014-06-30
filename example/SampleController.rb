@@ -7,16 +7,16 @@ class SampleController
 
   ##
   # Retuns all samples, as XML, for the current user that match the given parameters.
-  # 
+  #
   # @url [GET] /samples/index.[format]?[arguments]
   # @url [GET] /samples.[format]?[arguments]
-  # 
+  #
   # @argument [String] format Only "xml" is supported at this time.
   # @argument [String] name The name of the sample
   # @argument [String] reource The resource that sample belongs to
   # @optional_argument ["@assigned"|"@complete"|"!@complete"] search Return jobs that are assigned, complete, or
   #   uncomplete.
-  # 
+  #
   # @example_response
   #   <samples type="array">
   #     <sample>
@@ -30,14 +30,14 @@ class SampleController
   #       <created_at type="datetime">2010-03-09T20:43:16Z</created_at>
   #     </sample>
   #   <samples>
-  # 
+  #
   # @response_field [Integer] id A unique ID identifying the Sample
   # @response_field [String] name The name of the sample
   # @response_field [String] state The current status of the Sample. Can be complete, uncomplete, etc.
   # @response_field [String] notes Any notes given for the sample
   # @response_field [DateTime] updated_at The Date/Time (in ISO8601) that the Sample was last updated
   # @response_field [DateTime] created_at The Date/Time (in ISO8601) that the Sample was created
-  # 
+  #
   def index
   end
 
@@ -49,9 +49,9 @@ class SampleController
 
   ##
   # Creates a new sample
-  # 
+  #
   # @url [POST] /samples.[format]?[arguments]
-  # 
+  #
   # @argument [String] format Only "xml" is supported at this time.
   #
   # @example_request
@@ -93,7 +93,7 @@ class SampleController
   #     <updated_at type="datetime">2010-03-09T20:43:29Z</updated_at>
   #     <created_at type="datetime">2010-03-09T20:43:16Z</created_at>
   #   </sample>
-  # 
+  #
   # @response_field [Integer] id A unique ID identifying the Sample
   # @response_field [String] name The name of the sample
   # @response_field [String] state The current status of the Sample. Can be complete, uncomplete, etc.
@@ -114,20 +114,20 @@ end
 
 module First
   module Second
-    
+
     ##
     # Third level deep namespace class
     # @url /otherpath/third
     #
     class Third
-      
+
       ##
       # Does action!
       # @url [PUT] /otherpath/third/action
-      # 
+      #
       def action
       end
-      
+
     end
 
   end

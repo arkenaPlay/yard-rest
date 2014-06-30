@@ -13,8 +13,8 @@ module YARD::CLI::Additions
   end
 
   # This executes a custom filtering process that first checks if to see if all the controller methods/actions
-  # can be access by roles specified in Yard's CLI options. If they all can not be accessed the controller is 
-  # removed from the list. 
+  # can be access by roles specified in Yard's CLI options. If they all can not be accessed the controller is
+  # removed from the list.
   def run_verifier(list)
     if options.verifier && !list.empty?
       list.delete_if do |controller_object|

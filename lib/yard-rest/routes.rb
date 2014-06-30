@@ -1,5 +1,5 @@
 module YARD::Rest
-  class Routes 
+  class Routes
     class << self
       def with_resource_links(resources)
         resource_path = ""
@@ -32,7 +32,7 @@ module YARD::Rest
       def resource(route, resources)
         if controller_name = route.requirements[:controller]
           controller_class =  "#{controller_name}_controller".classify
-        
+
           resources.find { |object| object.path == controller_class }
         end
       end
